@@ -143,15 +143,15 @@ def detect_peaks():
 
             print(f"The plot of methane concentration against time for {key}")
 
-            plt.figure(figsize=(20,12))
-            plt.plot(df['timestamp'], df['ch4_conc'], label = "Methane Concentration (ppm)", color = 'blue')
-            plt.scatter(df["timestamp"].iloc[peak_idx], df["ch4_conc"].iloc[peak_idx], color = "red", alpha=0.6, label = 'Peaks')
-            plt.xlabel("Time in milliseconds")
-            plt.ylabel("Methane Concentration")
-            plt.title(f"Methane Concentration Peaks for {key}")
-            plt.grid(True)
-            plt.legend()
-            plt.show()
+            # plt.figure(figsize=(20,12))
+            # plt.plot(df['timestamp'], df['ch4_conc'], label = "Methane Concentration (ppm)", color = 'blue')
+            # plt.scatter(df["timestamp"].iloc[peak_idx], df["ch4_conc"].iloc[peak_idx], color = "red", alpha=0.6, label = 'Peaks')
+            # plt.xlabel("Time in milliseconds")
+            # plt.ylabel("Methane Concentration")
+            # plt.title(f"Methane Concentration Peaks for {key}")
+            # plt.grid(True)
+            # plt.legend()
+            # plt.show()
 
 
     save_data(clean_dataframes, save_dir= "./data/processed/peaks")
