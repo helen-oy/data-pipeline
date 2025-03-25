@@ -7,15 +7,6 @@ print("-"*100)
 
 """ Execute the full pipeline sequentially."""
 
-# # Step 1: Extract data
-# file_list = ["cowA_therm-0.csv", "cowA_therm-2.csv", "cowB_therm-0.csv", "cowB_therm-2.csv", "cowA_gas.csv", "cowB_gas.csv"]
-
-# t0 = time.time()
-# create_dataframe(file_list) # data extraction function for files list
-# t1 = time.time()
-# print("Step 1: Done")
-# print("--------> Data Extracted in ", str(t1-t0), "seconds", "\n")
-
 
 # Step 1 : Extract and Transform data
 t0 = time.time()

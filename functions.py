@@ -297,8 +297,6 @@ def test_result(df_name, model_eval_accuracy):
         #write the data rows
         writer.writerow(model_eval_accuracy)
         print('Done writing dict to a csv file')
-
-
         
 
 
