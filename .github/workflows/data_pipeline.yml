@@ -21,13 +21,15 @@ jobs:
         python-version: '3.12'
         cache: 'pip'
 
-    - name: Install dependencies
-      run: pip install  -r requirements.txt
+    - name: Create and Activate Virtual Environment
+      run: |
+        python -m venv myenv  
+        source myenv/bin/activate  
+        pip install --upgrade pip 
+        pip install -r requirements.txt 
 
     - name: Run data pipeline
-      
       run: |
-        python -m venv myenv   
         source myenv/bin/activate
         python data_pipeline.py
 
