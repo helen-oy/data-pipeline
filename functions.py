@@ -2,7 +2,8 @@
 
 import pandas as pd
 import numpy as np
-import seaborn as sns
+# import seaborn as sns
+# sns.__version__
 import matplotlib.pyplot as plt
 import  os 
 from scipy.signal import find_peaks
@@ -12,33 +13,6 @@ import xgboost as xgb
 from sklearn.metrics import accuracy_score
 import csv
 
-
-# file_list = ["cowA_therm-0.csv", "cowA_therm-2.csv", "cowB_therm-0.csv", "cowB_therm-2.csv", "cowA_gas.csv", "cowB_gas.csv"]
-
-#creating dataframes for thermistors 0 and 2 for both Cow A and Cow B
-# def create_dataframe():
-#     """
-#     Function to extract data and 
-    
-#     return dataframes
-#     Parameters:
-#     file_list: list of names of files
-#     category:  gas realted or thermistor related file
-
-#     """
-#     data_dir = "./data/"
-#     dataframes = {}
-    
-#     file_list = ["cowA_therm-0.csv", "cowA_therm-2.csv", "cowB_therm-0.csv", "cowB_therm-2.csv", "cowA_gas.csv", "cowB_gas.csv"]
-
-#     for file in file_list:
-#         filepath = os.path.join(data_dir, file)
-#         df_name =  "df_" + file.replace(".csv", "").replace("-","_")
-#         df = pd.read_csv(filepath)
-
-#         dataframes[df_name] = df
-#     save_data(df, save_dir= "./data/processed/cleaned")
-#     return dataframes
 
 
 
