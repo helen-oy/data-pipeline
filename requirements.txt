@@ -1,4 +1,1 @@
-python>=3.12
-find_peaks==1.1.0
 xgboost==_py_version()
-sklearn==1.6.1
