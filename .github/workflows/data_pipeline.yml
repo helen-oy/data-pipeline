@@ -27,6 +27,7 @@ jobs:
     - name: Run data pipeline
       
       run: |
+        python -m venv myenv   
         source myenv/bin/activate
         python data_pipeline.py
 
