@@ -1,5 +1,4 @@
 name: data-pipeline-workflow
-
 on:
   push:
   schedule:
@@ -15,25 +14,30 @@ jobs:
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
     - name:  Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
         cache: 'pip'
+
     - name: Install dependencies
       run: pip install  -r requirements.txt
+
     - name: Run data pipeline
-    - run: python data_pipeline.py
+      run: python data_pipeline.py
+
     - name: Check for changes
       id: git-check
-      run:
+      run: |
         git config user.name "github-actions"
         git config user.email 'github-actions@github.com'
         git add .
         git diff --staged --quiet || echo "changes=true" >> $GITHUB_ENV
+        
     - name: Commit and push if changes
-      if:  env.changes =="true" #if changes made push new data to repo
-      run:
+      if:  env.changes == "true" #if changes made push new data to repo
+      run: |
         git commit -m "updated peak predictions"
         git push
     
