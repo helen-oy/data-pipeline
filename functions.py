@@ -6,6 +6,7 @@ import numpy as np
 # sns.__version__
 import matplotlib.pyplot as plt
 import  os 
+import scipy
 from scipy.signal import find_peaks
 import sklearn
 from sklearn.preprocessing import StandardScaler
@@ -297,7 +298,7 @@ def test_result(df_name, model_eval_accuracy):
         writer.writerow(model_eval_accuracy)
         print('Done writing dict to a csv file')
 
-    
+
         
 
 
