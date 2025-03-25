@@ -3,8 +3,8 @@ name: data-pipeline-workflow
 on:
   push:
   schedule:
-    - cron: "35 0 * * *" 
-  workflow_dispatch:
+    - cron: "35 0 * * *"  #run everyday at 12:35 am
+  workflow_dispatch: # for manual triggers
   
 
 jobs:
@@ -14,13 +14,13 @@ jobs:
     - name: checkout repo content
       uses: actions/checkout@v4
       with:
-        token: 4{{ secrets.PERSONAL_ACCESS_TOKEN }}
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     - name:  Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.9'
+        python-version: '3.12'
         cache: 'pip'
-    - name: Install Dependencies
+    - name: Install dependencies
       run: pip install  -r requirements.txt
     - name: Run data pipeline
     - run: python data_pipeline.py
@@ -32,7 +32,7 @@ jobs:
         git add .
         git diff --staged --quiet || echo "changes=true" >> $GITHUB_ENV
     - name: Commit and push if changes
-      if:  env.changes =="true"
+      if:  env.changes =="true" #if changes made push new data to repo
       run:
         git commit -m "updated peak predictions"
         git push
