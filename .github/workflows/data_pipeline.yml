@@ -22,7 +22,7 @@ jobs:
           cache: 'pip'
 
       - name: Install dependencies
-        run: conda install -r requirements.txt
+        run: conda install requirements.txt
 
       - name: Run data pipeline
         run: python data_pipeline.py
