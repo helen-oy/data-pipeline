@@ -12,7 +12,7 @@ argon2-cffi-bindings==21.2.0
 jupyter-events==0.10.0              
 nbconvert==7.10.0  
 scipy==1.15.2     
-scikit-learn==1.4.1.post1
+scikit-learn==1.6.1
 conda==25.1.1
 conda-libmamba-solver>=24.11.0 
 numpy==1.26.4
