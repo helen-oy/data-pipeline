@@ -10,45 +10,33 @@ jobs:
   run-data-pipeline:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout repo content
-      uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: checkout repo content
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-    - name:  Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12'
-        cache: 'pip'
+      - name:  Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
 
-    - name: Create and Activate Virtual Environment
-      run:  |
-        python -m venv myenv  #Create virtual environment
-        echo "VIRTUAL_ENV=./myenv" >> $GITHUB_ENV  # Set env variable for venv path
-        echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH  # Add venv to PATH
-        pip install --upgrade pip  # Upgrade pip
-        pip install -r requirements.txt  # Install dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-    - name: Run data pipeline
-      run: |
-        source myenv/bin/activate
-        python data_pipeline.py
+      - name: Run data pipeline
+        run: python data_pipeline.py
 
-    - name: Check for changes
-      id: git-check
-      run: |
-        git config user.name "github-actions"
-        git config user.email 'github-actions@github.com'
-        git add .
-        if git diff --staged --quiet; then
-          echo "changes=false" >> $GITHUB_ENV
-        else
-          echo "changes=true" >> $GITHUB_ENV
-        fi
-        
-    - name: Commit and push if changes
-      if:  ${{ env.changes == 'true' }}  # Properly reference env variable #if changes made push new data to repo
-      run: |
-        git commit -m "updated peak predictions"
-        git push
-    
+      - name: Check for changes # create env variable indicating if any changes were made
+        id: git-check
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'github-actions@github.com'
+          git add .
+          git diff --staged --quiet || echo "changes=true" >> $GITHUB_ENV
+      
+      - name: Commit and push if changes
+        if: env.changes == 'true' # if changes made push new data to repo
+        run: |
+          git commit -m "updated peak predictions"
+          git push 

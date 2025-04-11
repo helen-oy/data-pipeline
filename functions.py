@@ -1,7 +1,7 @@
 #Importing important libraries
 
 import pandas as pd
-import numpy as np
+# import numpy as np
 # import seaborn as sns
 # sns.__version__
 import matplotlib.pyplot as plt
@@ -298,6 +298,7 @@ def test_result(df_name, model_eval_accuracy):
         writer.writerow(model_eval_accuracy)
         print('Done writing dict to a csv file')
         
+
 
 
 
