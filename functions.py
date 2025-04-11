@@ -99,15 +99,7 @@ def detect_peaks():
 
     for key, df in clean_dataframes.items():
 
-        df['timestamp'] = df['timestamp'].str.strip()
-
-        # Fixing malformed entries first (e.g., remove % if possible)
-        df['timestamp'] = df['timestamp'].str.replace('%', ':', regex=False)
-        
-        #converting timestamps to date-time format
-        # Now parsing using correct expected format
-        df['timestamp'] = pd.to_datetime(df['timestamp'], format='%H:%M:%S.%f', errors='coerce')
-
+        df['timestamp'] = pd.to_datetime(df['timestamp']) #converting timestamps to date-time format
 
         if 'gas' in key:
             peak_height =  df['ch4_conc'].mean() + 2*df['ch4_conc'].std() #calculating peak height based on human judgement and visualization of the methan concentration over tim
@@ -306,7 +298,6 @@ def test_result(df_name, model_eval_accuracy):
         writer.writerow(model_eval_accuracy)
         print('Done writing dict to a csv file')
         
-
 
 
 
