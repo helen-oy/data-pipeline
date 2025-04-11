@@ -54,7 +54,7 @@ def clean_data():
         #Converting time to datetime format
         if  "time_ms" in df.columns or "epoch_ms" in df.columns:
             time_col = "time_ms" if "time_ms" in df.columns else "epoch_ms" # checks if column is time_ms colum or epoch_ms 
-            df['timestamp'] = pd.to_datetime(df[time_col], unit='ms').dt.strftime('%H:%M%:%S.%f') #convert to date time format and extract just time
+            df['timestamp'] = pd.to_datetime(df[time_col], unit='ms').dt.strftime('%H:%M:%S.%f') #convert to date time format and extract just time
             df.drop(time_col, axis =1, inplace =True) # dropping pre-exisitng time column
             df =  df[['timestamp'] + [col for col in df.columns if col != 'timestamp']]
 
