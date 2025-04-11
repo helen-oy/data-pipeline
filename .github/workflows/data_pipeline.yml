@@ -10,6 +10,11 @@ jobs:
   run-data-pipeline:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          conda-version: 'latest'  
+
       - name: checkout repo content
         uses: actions/checkout@v4
         with:
@@ -22,7 +27,7 @@ jobs:
           cache: 'pip'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: conda install -r requirements.txt
 
       - name: Run data pipeline
         run: python data_pipeline.py
